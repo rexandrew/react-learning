@@ -4,11 +4,12 @@ import React, {useState} from 'react';
 import Title from './components/Title';
 import Modal from './components/Modal';
 import EventList from './components/EventList';
+import NewEventForm from './components/NewEventForm';
 
 function App() {
 
 //  const [name, setName] = useState('marta');
- const [events, setEvents] = useState([{title: "marta's birthday bash", id: 1}, {title: "bowser's live stream", id: 2}, {title: "race on moo farm", id: 3}]);
+ const [events, setEvents] = useState([]);
 
  const [showEvent, setShowEvent] = useState(true);
 
@@ -23,8 +24,11 @@ function App() {
       return prevState.filter(event => {return event.id !== id})
      })  
   }
- 
-  const closeModal = () => {
+
+  const addEvent= (event)=>{
+    setEvents((prevEvent)=>{
+      return [...prevEvent, event]
+    });
     setModal(false);
   }  
 
@@ -57,16 +61,13 @@ function App() {
     <p>Use the code JKDK at the checkout</p>
     </Modal>           */}
     {showModal &&
-    <Modal closeModal = {closeModal}>
-    <h2>Terms and conditions</h2>
-    <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident deserunt delectus culpa ullam? Veritatis optio sit neque nostrum accusantium non explicabo. Dolores dicta eveniet assumenda. Ducimus illum ab dignissimos! Nam.
-    </p>
+    <Modal>
+    <NewEventForm  addEvent= {addEvent}/>
     </Modal>    
     }
 
     <br/>
-    <button onClick= {()=>{setModal(true)}}>Show Modal</button>
+    <button onClick= {()=>{setModal(true)}}>Add New Event</button>
 
 
     </div>

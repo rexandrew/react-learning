@@ -9,7 +9,7 @@ export default function Modal(props){
             textAlign: "center"
             }}>
             {props.children}
-            <button onClick={props.closeModal}>Close Modal</button>
+            {/* <button onClick={props.closeModal}>Close Modal</button> */}
         </div>
 
     </div>)
